@@ -2,6 +2,20 @@
 import { RouterLink } from 'vue-router'
 </script>
 
+
+<style scoped>
+
+.USN-logo{
+  display: flex;
+  width: 300px;
+  height: 500px;
+  justify-content:center;
+  align-items:center;
+}
+
+</style>
+
+
 <template>
   <main>
     <section class="hero page-section">
@@ -17,18 +31,14 @@ import { RouterLink } from 'vue-router'
           <a class="text-link" href="#project">Our project <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-
-      <div class="hero-visual" aria-label="USN logo placeholder">
-        <div class="logo-placeholder">
-          <span>IMAGE HERE</span>
-          <small>USN LOGO</small>
-        </div>
-        <p>University of<br />South-Eastern Norway</p>
+      <div class="USN-logo">
+        <img src="./USN-symbol_sort.png">
       </div>
+      
     </section>
 
     <section id="project" class="project-section page-section">
-      <div class="section-number">01</div>
+      <div class="section-number">Group Number: --</div>
       <div class="project-heading">
         <p class="eyebrow">The bachelor project</p>
         <h2>Different disciplines.<br />A common goal.</h2>
@@ -54,3 +64,5 @@ import { RouterLink } from 'vue-router'
     </section>
   </main>
 </template>
+
+

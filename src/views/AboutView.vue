@@ -2,8 +2,8 @@
 import StudentCard from '@/components/StudentCard.vue'
 
 const students = [
-  { number: '01', name: 'Hubert Rwechungura', discipline: 'Software Engineer', focus: 'Role / Area of focus' },
-  { number: '02', name: 'Jon Emil Sæterøy', discipline: 'Mechanical Engineer', focus: 'Role / Area of focus' },
+  { number: '01', name: 'Jon Emil Sæterøy', discipline: 'Mechanical Engineer', focus: 'Role / Area of focus' },
+  { number: '02', name: 'Hubert Rwechungura', discipline: 'Software Engineer', focus: 'Role / Area of focus' },
   { number: '03', name: 'Veronica Sætre', discipline: 'Electrical Engineer', focus: 'Role / Area of focus' },
   { number: '04', name: 'Adrian Nilsson', discipline: 'Mechanical Engineer', focus: 'Role / Area of focus' },
   { number: '05', name: 'Sonia Salvatore Guiseppe', discipline: 'Software Engineer', focus: 'Role / Area of focus' },
@@ -35,7 +35,7 @@ const students = [
     <section class="about-footer-note page-section">
       <span>06 students</span>
       <p>Built on curiosity, collaboration, and a shared commitment to good engineering.</p>
-      <span>01 team</span>
+      <span>Group Number: -- </span>
     </section>
   </main>
 </template>
