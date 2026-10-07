@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
+function scrollToProject(){
+  document.getElementById('project')?.scrollIntoView({behavior: 'smooth'})
+}
+
 </script>
 
 
@@ -28,7 +33,10 @@ import { RouterLink } from 'vue-router'
         </p>
         <div class="hero-actions">
           <RouterLink class="button button-primary" to="/about">Meet the team</RouterLink>
-          <a class="text-link" href="#project">Our project <span aria-hidden="true">↓</span></a>
+          <!-- <a class="text-link" href="#project">Our project <span aria-hidden="true">↓</span></a> -->
+          <button class="text-link" type="button" @click="scrollToProject">
+            Our project <span aria-hidden="true">↓</span>
+          </button>
         </div>
       </div>
       <div class="USN-logo">

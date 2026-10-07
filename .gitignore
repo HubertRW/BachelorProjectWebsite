@@ -71,3 +71,6 @@ $RECYCLE.BIN/
 # Temporary files
 *.tmp
 *.temp
+
+# deployment
+deployment-guide/
