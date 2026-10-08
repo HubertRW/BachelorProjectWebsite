@@ -6,9 +6,11 @@ test.use({
 })
 
 test('timeline entries reveal on scroll and stay visible', async ({ page }) => {
-  await page.goto('/updates')
+  await page.goto('./#/updates')
   const entries = page.locator('.timeline-entry')
   await expect(entries).toHaveCount(3)
+  await entries.first().scrollIntoViewIfNeeded()
+  await expect(entries.first()).not.toHaveClass(/reveal-pending/)
   await expect(entries.first()).toHaveCSS('opacity', '1')
   await expect(entries.last()).toHaveClass(/reveal-pending/)
   await expect(entries.last()).toHaveCSS('opacity', '0')
@@ -28,12 +30,14 @@ test('timeline entries reveal on scroll and stay visible', async ({ page }) => {
     .toBe(false)
   await page.getByRole('link', { name: 'Home', exact: true }).click()
   await page.getByRole('link', { name: 'Updates', exact: true }).click()
+  await entries.first().scrollIntoViewIfNeeded()
+  await expect(entries.first()).not.toHaveClass(/reveal-pending/)
   await expect(entries.first()).toHaveCSS('opacity', '1')
 })
 
 test('reduced motion keeps all entries visible without animation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/updates')
+  await page.goto('./#/updates')
   await expect(page.locator('.timeline-entry')).toHaveCount(3)
   await expect(page.locator('.reveal-pending')).toHaveCount(0)
   await expect(page.locator('.timeline-entry').last()).toHaveCSS('opacity', '1')
@@ -55,14 +59,14 @@ test('entries remain visible when IntersectionObserver is unavailable', async ({
   await page.addInitScript(() => {
     Reflect.deleteProperty(window, 'IntersectionObserver')
   })
-  await page.goto('/updates')
+  await page.goto('./#/updates')
   await expect(page.locator('.timeline-entry')).toHaveCount(3)
   await expect(page.locator('.reveal-pending')).toHaveCount(0)
   await expect(page.locator('.timeline-entry').last()).toHaveCSS('opacity', '1')
 })
 
 test('changing to reduced motion reveals pending entries', async ({ page }) => {
-  await page.goto('/updates')
+  await page.goto('./#/updates')
   const last = page.locator('.timeline-entry').last()
   await expect(last).toHaveClass(/reveal-pending/)
   await page.emulateMedia({ reducedMotion: 'reduce' })

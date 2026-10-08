@@ -1,16 +1,21 @@
 import { test, expect } from '@playwright/test'
 
-test('home page presents the group and USN logo placeholder', async ({ page }) => {
-  await page.goto('/')
+test('home page presents the group and loaded USN logo', async ({ page }) => {
+  await page.goto('./#/')
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Engineering ideas')
-  await expect(page.getByText('IMAGE HERE').first()).toBeVisible()
-  await expect(page.getByText('USN LOGO')).toBeVisible()
+  const logo = page.locator('.USN-logo img')
+  await expect(logo).toBeVisible()
+  await expect
+    .poll(() =>
+      logo.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
+    )
+    .toBe(true)
   await expect(page.getByRole('link', { name: 'Meet the team' })).toBeVisible()
 })
 
 test('about page contains six student profile slots', async ({ page }) => {
-  await page.goto('/about')
+  await page.goto('./#/about')
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Meet the')
   await expect(page.locator('.student-card')).toHaveCount(6)
@@ -20,7 +25,7 @@ test('about page contains six student profile slots', async ({ page }) => {
 
 test('navigation works and mobile layout has no horizontal overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/')
+  await page.goto('./#/')
   await page.getByRole('link', { name: 'About us' }).click()
 
   await expect(page).toHaveURL(/\/about$/)
